@@ -9,11 +9,11 @@ public class TextBuddyTest {
 	@Test
 	public void testAddText() {
 		String[] test1 = {"add", "earth", "and", "moon"};
-		String[] test2 = {"add", "1", "32", "54"};
-		String[] test3 = {"add", "earth", "SUN", "1000"};
+		String[] test2 = {"add", "1", "30", "55"};
+		String[] test3 = {"add", "earth", "SUN", "thousand"};
 		String expected1 = "Added successfully to testFile: \"earth and moon\"";
-		String expected2 = "Added successfully to testFile: \"1 32 54\"";
-		String expected3 = "Added successfully to testFile: \"earth SUN 1000\"";
+		String expected2 = "Added successfully to testFile: \"1 30 55\"";
+		String expected3 = "Added successfully to testFile: \"earth SUN thousand\"";
 				
 		// test case 1
 		assertEquals("adding text is not successful", expected1, tester.proceedUserAction(test1));
@@ -39,13 +39,13 @@ public class TextBuddyTest {
 		
 		// test case 2
 		tester.proceedUserAction(new String[] {"add", "earth", "and", "moon"});
-		tester.proceedUserAction(new String[] {"add", "32", "and", "74"});
+		tester.proceedUserAction(new String[] {"add", "math", "and", "physic"});
 		tester.proceedUserAction(new String[] {"add", "I", "am", "fine."});
 		assertEquals("deleting text is not successful", expected2, tester.proceedUserAction(test2));
 		
 		// test case 3
 		tester.proceedUserAction(new String[] {"add", "I", "am", "fine."});
-		tester.proceedUserAction(new String[] {"add", "32", "and", "74"});
+		tester.proceedUserAction(new String[] {"add", "math", "and", "physic"});
 		assertEquals("index out of range", expected3, tester.proceedUserAction(test3));
 	}
 
@@ -53,15 +53,15 @@ public class TextBuddyTest {
 	public void testDisplayTextList() {
 		String[] test = {"display"};
 		String expected1 = "testFile is empty";
-		String expected2 = "1. earth and moon\n2. 32 and 74\n3. I am fine";
-		String expected3 = "1. earth and moon\n2. 32 and 74\n3. I am fine.\n4. JUMP OVER THE FENCE";
+		String expected2 = "1. earth and moon\n2. math and physic\n3. I am fine.";
+		String expected3 = "1. earth and moon\n2. math and physic\n3. I am fine.\n4. JUMP OVER THE FENCE";
 		
 		// test case 1
 		assertEquals("test file should be empty", expected1, tester.proceedUserAction(test));
 		
 		// test case 2
 		tester.proceedUserAction(new String[] {"add", "earth", "and", "moon"});
-		tester.proceedUserAction(new String[] {"add", "32", "and", "74"});
+		tester.proceedUserAction(new String[] {"add", "math", "and", "physic"});
 		tester.proceedUserAction(new String[] {"add", "I", "am", "fine."});
 		assertEquals("deleting text is not successful", expected2, tester.proceedUserAction(test));
 		
@@ -81,7 +81,7 @@ public class TextBuddyTest {
 		
 		// test case 2
 		tester.proceedUserAction(new String[] {"add", "earth", "and", "moon"});
-		tester.proceedUserAction(new String[] {"add", "32", "and", "74"});
+		tester.proceedUserAction(new String[] {"add", "math", "and", "physic"});
 		tester.proceedUserAction(new String[] {"add", "I", "am", "fine."});
 		assertEquals("clearing all texts is not successful", expected2, tester.proceedUserAction(test));	
 	}
@@ -89,9 +89,9 @@ public class TextBuddyTest {
 	@Test
 	public void testSortTextList() {
 		String[] test = {"sort"};
-		String expected1 = "After sorting:\n1. earth and moon\n2. jump over the moon\n3. nice";
-		String expected2 = "After sorting:\n1. 35 problems\n2. earth and moon\n3. jump over the moon\n4. nice";
-		String expected3 = "After sorting:\n1. Apple juice\n2. jump over the moon\n3. JUMPED OVER THE MOON\n4. nice";
+		String expected1 = "After sorting:\n1. earth and moon\n2. jump over the fence\n3. nice";
+		String expected2 = "After sorting:\n1. 20 problems\n2. earth and moon\n3. jump over the fence\n4. nice";
+		String expected3 = "After sorting:\n1. Apple juice\n2. JUMPED OVER THE MOON\n3. earth and moon\n4. jump over the fence\n5. nice";
 				
 		// test case 1
 		tester.proceedUserAction(new String[] {"add", "nice"});
@@ -100,7 +100,7 @@ public class TextBuddyTest {
 		assertEquals("adding item is not successful", expected1, tester.proceedUserAction(test));
 		
 		// test case 2
-		tester.proceedUserAction(new String[] {"add", "35", "problems"});
+		tester.proceedUserAction(new String[] {"add", "20", "problems"});
 		assertEquals("adding item is not successful", expected2, tester.proceedUserAction(test));
 		
 		// test case 3

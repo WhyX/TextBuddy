@@ -8,7 +8,7 @@ import java.util.*;
 import java.io.*;
 
 /** TextBuddy is a CLI (Command Line Interface) program. It supports the following functions:
- *		add <text> // text cannot be blank
+ *		add <text> // text cannot be blank 
  *		delete <index of item> // index of item must be positive integer
  *		display
  *		clear
@@ -25,7 +25,7 @@ public class TextBuddy {
 	private static final String MESSAGE_COMMAND = "Command: ";
 	private static final String MESSAGE_ADD_SUCCESSFUL = "Added successfully to %s: \"%s\"";
 	private static final String MESSAGE_DELETE_SUCCESSFUL = "Deleted successfully from %s: \"%s\"";
-	private static final String MESSAGE_SORT_SUCCESSFUL = "All texts from %s sorted in alphabetical order successfully";
+	private static final String MESSAGE_SORT_SUCCESSFUL = "After sorting:\n%s";
 	private static final String MESSAGE_SEARCH_SUCCESSFUL = "Desired text found in %s successfully";
 	private static final String MESSAGE_SEARCH_FAILED = "%s is not found in %s";
 	private static final String MESSAGE_CLEAR_TEXTLIST_SUCCESSFUL = "All texts deleted from %s successfully";
@@ -208,9 +208,17 @@ public class TextBuddy {
 		}
 	}
 	
-	// execute sort command which will sort text alphabetically
+	// execute sort command which will sort text alphabetically and then return the sorted text list
 	private String sortTextList(){
-		return null;
+		if(textList.isEmpty()){
+			return MESSAGE_FILE_EMPTY;
+		}
+		
+		Collections.sort(textList);
+		
+		String sortedList = displayTextList();
+		
+		return String.format(MESSAGE_SORT_SUCCESSFUL, sortedList);
 	}
 	
 	// execute search command which will search for the key word in the text file and
