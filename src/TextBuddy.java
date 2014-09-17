@@ -25,7 +25,6 @@ public class TextBuddy {
 	private static final String MESSAGE_COMMAND = "command: ";
 	private static final String MESSAGE_ADD_SUCCESSFUL = "added successfully to %s: \"%s\"";
 	private static final String MESSAGE_DELETE_SUCCESSFUL = "deleted successfully from %s: \"%s\"";
-	private static final String MESSAGE_DISPLAY_SUCCESSFUL = "all texts in %s are displayed successfully";
 	private static final String MESSAGE_SORT_SUCCESSFUL = "all texts from %s sorted in alphabetical order successfully";
 	private static final String MESSAGE_SEARCH_SUCCESSFUL = "desired text found in %s successfully";
 	private static final String MESSAGE_SEARCH_FAILED = "%s is not found in %s";
@@ -184,13 +183,18 @@ public class TextBuddy {
 			return String.format(MESSAGE_FILE_EMPTY, fileName);
 		}
 		
+		String displayList = "";
+		
 		for(int i = 0; i < textList.size(); i++){
 			int displayIndex = i + 1;
 			String displayText = textList.get(i);
-			System.out.println(String.format(MESSAGE_DISPLAY_ITEM, displayIndex, displayText));
+			displayList = displayList.concat(String.format(MESSAGE_DISPLAY_ITEM, displayIndex, displayText));
+			if(i != textList.size() - 1){
+				displayList = displayList.concat("\n");
+			}
 		}
 		
-		return String.format(MESSAGE_DISPLAY_SUCCESSFUL, fileName);
+		return displayList;
 	}
 	
 	// execute clear command which delete all texts found in the list
