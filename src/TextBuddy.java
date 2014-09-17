@@ -7,8 +7,8 @@
 import java.util.*;
 import java.io.*;
 
-/** TextBuddy is a to-do list program. It supports the following functions:
- *		add <item> // item cannot be blank
+/** TextBuddy is a CLI (Command Line Interface) program. It supports the following functions:
+ *		add <text> // text cannot be blank
  *		delete <index of item> // index of item must be positive integer
  *		display
  *		clear
@@ -22,13 +22,13 @@ import java.io.*;
 public class TextBuddy {
 	// messages shown to the user 
 	private static final String MESSAGE_WELCOME = "Welcome to TextBuddy. %s is ready for use ";
-	private static final String MESSAGE_COMMAND = "command: ";
-	private static final String MESSAGE_ADD_SUCCESSFUL = "added successfully to %s: \"%s\"";
-	private static final String MESSAGE_DELETE_SUCCESSFUL = "deleted successfully from %s: \"%s\"";
-	private static final String MESSAGE_SORT_SUCCESSFUL = "all texts from %s sorted in alphabetical order successfully";
-	private static final String MESSAGE_SEARCH_SUCCESSFUL = "desired text found in %s successfully";
+	private static final String MESSAGE_COMMAND = "Command: ";
+	private static final String MESSAGE_ADD_SUCCESSFUL = "Added successfully to %s: \"%s\"";
+	private static final String MESSAGE_DELETE_SUCCESSFUL = "Deleted successfully from %s: \"%s\"";
+	private static final String MESSAGE_SORT_SUCCESSFUL = "All texts from %s sorted in alphabetical order successfully";
+	private static final String MESSAGE_SEARCH_SUCCESSFUL = "Desired text found in %s successfully";
 	private static final String MESSAGE_SEARCH_FAILED = "%s is not found in %s";
-	private static final String MESSAGE_CLEAR_TEXTLIST_SUCCESSFUL = "all texts deleted from %s successfully";
+	private static final String MESSAGE_CLEAR_TEXTLIST_SUCCESSFUL = "All texts deleted from %s successfully";
 	private static final String MESSAGE_DISPLAY_ITEM = "%s. %s";
 	private static final String MESSAGE_FILE_EMPTY = "%s is empty";
 	
