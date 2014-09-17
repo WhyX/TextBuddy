@@ -12,6 +12,8 @@ import java.io.*;
  *		delete <index of item> // index of item must be positive integer
  *		display
  *		clear
+ *		sort
+ *		search <key word> // key word must be alphabets, case does not matter
  *		exit
  * @author WhyXce
  *
@@ -21,15 +23,18 @@ public class TextBuddy {
 	// messages shown to the user 
 	private static final String MESSAGE_WELCOME = "Welcome to TextBuddy. %s is ready for use ";
 	private static final String MESSAGE_COMMAND = "command: ";
-	private static final String MESSAGE_ADD_SUCCESSFUL = "added to %s: \"%s\"";
-	private static final String MESSAGE_DELETE_ITEM_SUCCESSFUL = "deleted from %s: \"%s\"";
-	private static final String MESSAGE_DISPLAY_SUCCESSFUL = "all items in %s displayed successfully";
-	private static final String MESSAGE_CLEAR_FILE_CONTENTS_SUCCESSFUL = "all content deleted from %s";
+	private static final String MESSAGE_ADD_SUCCESSFUL = "added successfully to %s: \"%s\"";
+	private static final String MESSAGE_DELETE_SUCCESSFUL = "deleted successfully from %s: \"%s\"";
+	private static final String MESSAGE_DISPLAY_SUCCESSFUL = "all texts in %s are displayed successfully";
+	private static final String MESSAGE_SORT_SUCCESSFUL = "all texts from %s sorted in alphabetical order successfully";
+	private static final String MESSAGE_SEARCH_SUCCESSFUL = "desired text found in %s successfully";
+	private static final String MESSAGE_SEARCH_FAILED = "%s is not found in %s";
+	private static final String MESSAGE_CLEAR_TEXTLIST_SUCCESSFUL = "all texts deleted from %s successfully";
 	private static final String MESSAGE_DISPLAY_ITEM = "%s. %s";
 	private static final String MESSAGE_FILE_EMPTY = "%s is empty";
 	
 	// error messages
-	private static final String ERROR_INDEX_OUT_OF_BOUND = "Index out of range. Please try again";
+	private static final String ERROR_INDEX_OUT_OF_BOUND =  "Index out of range. Please try again";
 	private static final String ERROR_INVALID_COMMAND = "Invalid command. Please try again.";
 	private static final String ERROR_NULL_COMMAND = "Nothing is inserted. Please try again.";
 	
@@ -120,11 +125,16 @@ public class TextBuddy {
 				messageToUser = deleteText(userAction);
 				break;
 			case "display": 
-				messageToUser = displayAllText();
+				messageToUser = displayTextList();
 				break;
 			case "clear": 
-				messageToUser = clearAllText();
+				messageToUser = clearTextList();
 				break;
+			case "sort":
+				messageToUser = sortTextList();
+				break;
+			case "search":
+				messageToUser = searchText(userAction);
 			case "exit": 
 				exit();
 				break;
@@ -164,12 +174,12 @@ public class TextBuddy {
 			String removedText = textList.get(removedIndex);
 				
 			textList.remove(removedIndex);
-			return String.format(MESSAGE_DELETE_ITEM_SUCCESSFUL, fileName, removedText);
+			return String.format(MESSAGE_DELETE_SUCCESSFUL, fileName, removedText);
 		}
 	}
 	
 	// execute display command which show all the texts in the list
-	private String displayAllText(){
+	private String displayTextList(){
 		if(textList.isEmpty()){
 			return String.format(MESSAGE_FILE_EMPTY, fileName);
 		}
@@ -184,14 +194,25 @@ public class TextBuddy {
 	}
 	
 	// execute clear command which delete all texts found in the list
-	private String clearAllText(){
+	private String clearTextList(){
 		if(textList.isEmpty()){
 			return String.format(MESSAGE_FILE_EMPTY, fileName);
 		}
 		else{
 			textList.clear();
-			return String.format(MESSAGE_CLEAR_FILE_CONTENTS_SUCCESSFUL, fileName);
+			return String.format(MESSAGE_CLEAR_TEXTLIST_SUCCESSFUL, fileName);
 		}
+	}
+	
+	// execute sort command which will sort text alphabetically
+	private String sortTextList(){
+		return null;
+	}
+	
+	// execute search command which will search for the key word in the text file and
+	// return all text containing the word regardless of the letter cases
+	private String searchText(String[] userAction){
+		return null;
 	}
 	
 	// execute exit command and write the list of texts into txt type file
