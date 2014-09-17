@@ -92,7 +92,9 @@ public class TextBuddyTest {
 		String expected1 = "After sorting:\n1. earth and moon\n2. jump over the fence\n3. nice";
 		String expected2 = "After sorting:\n1. 20 problems\n2. earth and moon\n3. jump over the fence\n4. nice";
 		String expected3 = "After sorting:\n1. Apple juice\n2. JUMPED OVER THE MOON\n3. earth and moon\n4. jump over the fence\n5. nice";
-				
+		String expected4 = "After sorting:\n1. 3 FRUIt\n2. FLU\n3. FRUIT\n4. FlU\n5. fruit";		
+		String expected5 = "After sorting:\n1. 3 FRUIt\n2. FRUIT\n3. fRUIT\n4. fRUit\n5. fRuIt\n6. frUIT\n7. fruit";
+		
 		// test case 1
 		tester.proceedUserAction(new String[] {"add", "nice"});
 		tester.proceedUserAction(new String[] {"add", "earth", "and", "moon"});
@@ -109,5 +111,23 @@ public class TextBuddyTest {
 		tester.proceedUserAction(new String[] {"add", "JUMPED", "OVER", "THE", "MOON"});
 		tester.proceedUserAction(new String[] {"add", "Apple", "juice"});
 		assertEquals("adding item is not successful", expected3, tester.proceedUserAction(test));
+		
+		// test case 4
+		tester.proceedUserAction(new String[] {"clear"});
+		tester.proceedUserAction(new String[] {"add", "FRUIT"});
+		tester.proceedUserAction(new String[] {"add", "FLU"});
+		tester.proceedUserAction(new String[] {"add", "FlU"});
+		tester.proceedUserAction(new String[] {"add", "3", "FRUIt"});
+		tester.proceedUserAction(new String[] {"add", "fruit"});
+		assertEquals("adding item is not successful", expected4, tester.proceedUserAction(test));
+		
+		// test case 5
+		tester.proceedUserAction(new String[] {"delete", "2"});
+		tester.proceedUserAction(new String[] {"delete", "3"});
+		tester.proceedUserAction(new String[] {"add", "frUIT"});
+		tester.proceedUserAction(new String[] {"add", "fRUit"});
+		tester.proceedUserAction(new String[] {"add", "fRuIt"});
+		tester.proceedUserAction(new String[] {"add", "fRUIT"});
+		assertEquals("adding item is not successful", expected5, tester.proceedUserAction(test));
 	}
 }
