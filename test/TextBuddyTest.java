@@ -16,13 +16,13 @@ public class TextBuddyTest {
 		String expected3 = "Added successfully to testFile: \"earth SUN thousand\"";
 				
 		// test case 1
-		assertEquals("adding text is not successful", expected1, tester.proceedUserAction(test1));
+		assertEquals("fail to add text", expected1, tester.proceedUserAction(test1));
 		
 		// test case 2
-		assertEquals("adding text is not successful", expected2, tester.proceedUserAction(test2));
+		assertEquals("fail to add text", expected2, tester.proceedUserAction(test2));
 		
 		// test case 3
-		assertEquals("adding text is not successful", expected3, tester.proceedUserAction(test3));
+		assertEquals("fail to add text", expected3, tester.proceedUserAction(test3));
 	}
 
 	@Test
@@ -41,7 +41,7 @@ public class TextBuddyTest {
 		tester.proceedUserAction(new String[] {"add", "earth", "and", "moon"});
 		tester.proceedUserAction(new String[] {"add", "math", "and", "physic"});
 		tester.proceedUserAction(new String[] {"add", "I", "am", "fine."});
-		assertEquals("deleting text is not successful", expected2, tester.proceedUserAction(test2));
+		assertEquals("fail to delete text", expected2, tester.proceedUserAction(test2));
 		
 		// test case 3
 		tester.proceedUserAction(new String[] {"add", "I", "am", "fine."});
@@ -63,11 +63,11 @@ public class TextBuddyTest {
 		tester.proceedUserAction(new String[] {"add", "earth", "and", "moon"});
 		tester.proceedUserAction(new String[] {"add", "math", "and", "physic"});
 		tester.proceedUserAction(new String[] {"add", "I", "am", "fine."});
-		assertEquals("deleting text is not successful", expected2, tester.proceedUserAction(test));
+		assertEquals("display result is wrong", expected2, tester.proceedUserAction(test));
 		
 		// test case 3
 		tester.proceedUserAction(new String[] {"add", "JUMP", "OVER", "THE", "FENCE"});
-		assertEquals("deleting text is not successful", expected3, tester.proceedUserAction(test));
+		assertEquals("display result is wrong", expected3, tester.proceedUserAction(test));
 	}
 
 	@Test
@@ -83,7 +83,7 @@ public class TextBuddyTest {
 		tester.proceedUserAction(new String[] {"add", "earth", "and", "moon"});
 		tester.proceedUserAction(new String[] {"add", "math", "and", "physic"});
 		tester.proceedUserAction(new String[] {"add", "I", "am", "fine."});
-		assertEquals("clearing all texts is not successful", expected2, tester.proceedUserAction(test));	
+		assertEquals("fail to clear all texts", expected2, tester.proceedUserAction(test));	
 	}
 	
 	@Test
@@ -94,23 +94,24 @@ public class TextBuddyTest {
 		String expected3 = "After sorting:\n1. Apple juice\n2. JUMPED OVER THE MOON\n3. earth and moon\n4. jump over the fence\n5. nice";
 		String expected4 = "After sorting:\n1. 3 FRUIt\n2. FLU\n3. FRUIT\n4. FlU\n5. fruit";		
 		String expected5 = "After sorting:\n1. 3 FRUIt\n2. FRUIT\n3. fRUIT\n4. fRUit\n5. fRuIt\n6. frUIT\n7. fruit";
+		String expected6 = "testFile is empty";
 		
 		// test case 1
 		tester.proceedUserAction(new String[] {"add", "nice"});
 		tester.proceedUserAction(new String[] {"add", "earth", "and", "moon"});
 		tester.proceedUserAction(new String[] {"add", "jump", "over", "the", "fence"});
-		assertEquals("adding item is not successful", expected1, tester.proceedUserAction(test));
+		assertEquals("fail to sort text list", expected1, tester.proceedUserAction(test));
 		
 		// test case 2
 		tester.proceedUserAction(new String[] {"add", "20", "problems"});
-		assertEquals("adding item is not successful", expected2, tester.proceedUserAction(test));
+		assertEquals("fail to sort text list", expected2, tester.proceedUserAction(test));
 		
 		// test case 3
 		tester.proceedUserAction(new String[] {"delete", "1"});
 		tester.proceedUserAction(new String[] {"delete", "0"});
 		tester.proceedUserAction(new String[] {"add", "JUMPED", "OVER", "THE", "MOON"});
 		tester.proceedUserAction(new String[] {"add", "Apple", "juice"});
-		assertEquals("adding item is not successful", expected3, tester.proceedUserAction(test));
+		assertEquals("fail to sort text list", expected3, tester.proceedUserAction(test));
 		
 		// test case 4
 		tester.proceedUserAction(new String[] {"clear"});
@@ -119,7 +120,7 @@ public class TextBuddyTest {
 		tester.proceedUserAction(new String[] {"add", "FlU"});
 		tester.proceedUserAction(new String[] {"add", "3", "FRUIt"});
 		tester.proceedUserAction(new String[] {"add", "fruit"});
-		assertEquals("adding item is not successful", expected4, tester.proceedUserAction(test));
+		assertEquals("fail to sort text list", expected4, tester.proceedUserAction(test));
 		
 		// test case 5
 		tester.proceedUserAction(new String[] {"delete", "2"});
@@ -128,6 +129,31 @@ public class TextBuddyTest {
 		tester.proceedUserAction(new String[] {"add", "fRUit"});
 		tester.proceedUserAction(new String[] {"add", "fRuIt"});
 		tester.proceedUserAction(new String[] {"add", "fRUIT"});
-		assertEquals("adding item is not successful", expected5, tester.proceedUserAction(test));
+		assertEquals("fail to sort text list", expected5, tester.proceedUserAction(test));
+		
+		// test case 6
+		tester.proceedUserAction(new String[] {"clear"});
+		assertEquals("text file should be empty", expected6, tester.proceedUserAction(test));
+	}
+	
+	@Test
+	public void testSearchText() {
+		String[] test = {"search", "Apple"};
+		String expected1 = "testFile is empty";
+		String expected2 = "Apple is not found in testFile";
+		String expected3 = "Search result:\n1. apple is good";
+		
+		// test case 1
+		assertEquals("test file should be empty", expected1, tester.proceedUserAction(test));
+		
+		// test case 2
+		tester.proceedUserAction(new String[] {"add", "apple", "is", "good"});
+		tester.proceedUserAction(new String[] {"add", "math", "and", "physic"});
+		tester.proceedUserAction(new String[] {"add", "I", "am", "fine."});
+		assertEquals("key word is not contained in any of the texts", expected2, tester.proceedUserAction(test));
+		
+		// test case 3
+		tester.proceedUserAction(new String[] {"add", "JUMP", "OVER", "THE", "FENCE"});
+		assertEquals("search result is wrong", expected3, tester.proceedUserAction(test));
 	}
 }

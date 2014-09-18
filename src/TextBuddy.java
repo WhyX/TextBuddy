@@ -26,7 +26,7 @@ public class TextBuddy {
 	private static final String MESSAGE_ADD_SUCCESSFUL = "Added successfully to %s: \"%s\"";
 	private static final String MESSAGE_DELETE_SUCCESSFUL = "Deleted successfully from %s: \"%s\"";
 	private static final String MESSAGE_SORT_SUCCESSFUL = "After sorting:\n%s";
-	private static final String MESSAGE_SEARCH_SUCCESSFUL = "Desired text found in %s successfully";
+	private static final String MESSAGE_SEARCH_SUCCESSFUL = "Search result:\n%s";
 	private static final String MESSAGE_SEARCH_FAILED = "%s is not found in %s";
 	private static final String MESSAGE_CLEAR_TEXTLIST_SUCCESSFUL = "All texts deleted from %s successfully";
 	private static final String MESSAGE_DISPLAY_ITEM = "%s. %s";
