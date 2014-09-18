@@ -134,6 +134,7 @@ public class TextBuddy {
 				break;
 			case "search":
 				messageToUser = searchText(userAction);
+				break;
 			case "exit": 
 				exit();
 				break;
@@ -211,7 +212,7 @@ public class TextBuddy {
 	// execute sort command which will sort text alphabetically and then return the sorted text list
 	private String sortTextList(){
 		if(textList.isEmpty()){
-			return MESSAGE_FILE_EMPTY;
+			return String.format(MESSAGE_FILE_EMPTY, fileName);
 		}
 		
 		Collections.sort(textList);
@@ -224,7 +225,29 @@ public class TextBuddy {
 	// execute search command which will search for the key word in the text file and
 	// return all text containing the word regardless of the letter cases
 	private String searchText(String[] userAction){
-		return null;
+		if(textList.isEmpty()){
+			return String.format(MESSAGE_FILE_EMPTY, fileName);
+		}
+		
+		String keyWord = userAction[1];
+		String foundText = "";
+		
+		for(int i = 0; i < textList.size(); i++){
+			int textIndex = i + 1;
+			String text = textList.get(i);
+			if(text.toLowerCase().contains(keyWord.toLowerCase())){
+				foundText = foundText.concat(String.format(MESSAGE_DISPLAY_ITEM, textIndex, text));
+				if(i != textList.size() - 1){
+					foundText = foundText.concat("\n");
+				}
+			}
+		}
+		
+		if(foundText.equals("")){
+			return String.format(MESSAGE_SEARCH_FAILED, keyWord, fileName);
+		}
+		
+		return String.format(MESSAGE_SEARCH_SUCCESSFUL, foundText);
 	}
 	
 	// execute exit command and write the list of texts into txt type file

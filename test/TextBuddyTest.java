@@ -141,19 +141,18 @@ public class TextBuddyTest {
 		String[] test = {"search", "Apple"};
 		String expected1 = "testFile is empty";
 		String expected2 = "Apple is not found in testFile";
-		String expected3 = "Search result:\n1. apple is good";
+		String expected3 = "Search result:\n3. apple is good";
 		
 		// test case 1
 		assertEquals("test file should be empty", expected1, tester.proceedUserAction(test));
 		
 		// test case 2
-		tester.proceedUserAction(new String[] {"add", "apple", "is", "good"});
 		tester.proceedUserAction(new String[] {"add", "math", "and", "physic"});
 		tester.proceedUserAction(new String[] {"add", "I", "am", "fine."});
 		assertEquals("key word is not contained in any of the texts", expected2, tester.proceedUserAction(test));
 		
 		// test case 3
-		tester.proceedUserAction(new String[] {"add", "JUMP", "OVER", "THE", "FENCE"});
+		tester.proceedUserAction(new String[] {"add", "apple", "is", "good"});
 		assertEquals("search result is wrong", expected3, tester.proceedUserAction(test));
 	}
 }
